@@ -117,61 +117,106 @@ class block_data
                     touch_point[1] = {0,1};
                     tall = 3;
                 }
-                else if(block[1]=='2'){
-                    shape[0]={0,0};shape[1]={0,1};shape[2]={0,2};shape[3]={1,0};  
-                    touch_point[0]={0,0};touch_point[1]={0,1};touch_point[2]={0,2}; 
+                else if(block[1] == '2'){
+                    shape[0]={0,0};
+                    shape[1]={0,1};
+                    shape[2]={0,2};
+                    shape[3]={1,0};  
+                    touch_point[0]={0,0};
+                    touch_point[1]={0,1};
+                    touch_point[2]={0,2}; 
                     tall=2;        
                 }
                 else if(block[1]=='3'){
-                    shape[0]={0,0};shape[1]={1,0};shape[2]={2,0};shape[3]={2,1};
-                    touch_point[0]={0,0};touch_point[1]={2,1};    
+                    shape[0]={0,0};
+                    shape[1]={1,0};
+                    shape[2]={2,0};
+                    shape[3]={2,1};
+                    touch_point[0]={0,0};
+                    touch_point[1]={2,1};    
                     tall=3;  
                 }
                 else if(block[1]=='4'){
-                    shape[0]={0,2};shape[1]={1,0};shape[2]={1,1};shape[3]={1,2};
-                    touch_point[0]={0,2};touch_point[1]={1,0};touch_point[2]={1,1};
+                    shape[0]={0,2};
+                    shape[1]={1,0};
+                    shape[2]={1,1};
+                    shape[3]={1,2};
+                    touch_point[0]={0,2};
+                    touch_point[1]={1,0};
+                    touch_point[2]={1,1};
                     tall=2;
                 }
             }
             else if(block[0]=='S'){
                 if(block[1]=='1'){
-                    shape[0]={0,0};shape[1]={0,1};shape[2]={1,1};shape[3]={1,2};   
-                    touch_point[0]={0,0};touch_point[1]={0,1};touch_point[2]={1,2};
+                    shape[0]={0,0};
+                    shape[1]={0,1};
+                    shape[2]={1,1};
+                    shape[3]={1,2};   
+                    touch_point[0]={0,0};
+                    touch_point[1]={0,1};
+                    touch_point[2]={1,2};
                     tall=2;
                 }
                 else if(block[1]=='2'){
-                    shape[0]={0,1};shape[1]={1,0};shape[2]={1,1};shape[3]={2,0};  
-                    touch_point[0]={0,1};touch_point[1]={1,0};         
+                    shape[0]={0,1};
+                    shape[1]={1,0};
+                    shape[2]={1,1};
+                    shape[3]={2,0};  
+                    touch_point[0]={0,1};
+                    touch_point[1]={1,0};         
                     tall=3;
                 }
             }
             else if(block[0]=='Z'){
                 if(block[1]=='1'){
-                    shape[0]={0,1};shape[1]={0,2};shape[2]={1,0};shape[3]={1,1};   
-                    touch_point[0]={0,1};touch_point[1]={0,2};touch_point[2]={1,0};
+                    shape[0]={0,1};
+                    shape[1]={0,2};
+                    shape[2]={1,0};
+                    shape[3]={1,1};   
+                    touch_point[0]={0,1};
+                    touch_point[1]={0,2};
+                    touch_point[2]={1,0};
                     tall=2;
                 }
                 else if(block[1]=='2'){
-                    shape[0]={0,0};shape[1]={1,0};shape[2]={1,1};shape[3]={2,1};  
-                    touch_point[0]={0,0};touch_point[1]={1,1};         
+                    shape[0]={0,0};
+                    shape[1]={1,0};
+                    shape[2]={1,1};
+                    shape[3]={2,1};  
+                    touch_point[0]={0,0};
+                    touch_point[1]={1,1};         
                     tall=3;
                 }
             }
             else if(block[0]=='I'){
                 if(block[1]=='1'){
-                    shape[0]={0,0};shape[1]={1,0};shape[2]={2,0};shape[3]={3,0};   
+                    shape[0]={0,0};
+                    shape[1]={1,0};
+                    shape[2]={2,0};
+                    shape[3]={3,0};   
                     touch_point[0]={0,0};
                     tall=4;
                 }
                 else if(block[1]=='2'){
-                    shape[0]={0,0};shape[1]={0,1};shape[2]={0,2};shape[3]={0,3};  
-                    touch_point[0]={0,0};touch_point[1]={0,1};touch_point[2]={0,2};touch_point[3]={0,3};    
+                    shape[0]={0,0};
+                    shape[1]={0,1};
+                    shape[2]={0,2};
+                    shape[3]={0,3};  
+                    touch_point[0]={0,0};
+                    touch_point[1]={0,1};
+                    touch_point[2]={0,2};
+                    touch_point[3]={0,3};    
                     tall=1; 
                 }
             }
             else if(block[0]=='O'){
-                shape[0]={0,0};shape[1]={0,1};shape[2]={1,0};shape[3]={1,1};  
-                touch_point[0]={0,0};touch_point[1]={0,1}; 
+                shape[0]={0,0};
+                shape[1]={0,1};
+                shape[2]={1,0};
+                shape[3]={1,1};  
+                touch_point[0]={0,0};
+                touch_point[1]={0,1}; 
                 tall=2; 
             }
 
