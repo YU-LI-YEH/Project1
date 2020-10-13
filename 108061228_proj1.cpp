@@ -261,7 +261,7 @@ class TETRIS
         void settetris()
         {
 
-            row = new int[m*n];
+            row = new int[m * n];
             for(int i = 0; i < m * n; i++){
                 *(row + i) = 0;
             }  
@@ -305,102 +305,102 @@ class TETRIS
                     puttingrow = 0;
                     b = 1;
                 } 
-                if(puttingrow + block.gettall() >m && b== 1)exceed = 1;
+                if(puttingrow + block.gettall() >m && b == 1)exceed = 1;
 
                 if(exceed == 0 && b == 1){                           
                     for(int k = 0; k < 4; k++){
-                        int rr=puttingrow+block.getshape(k).r;
-                        int cc=block.getstart_col()+block.getshape(k).c;
-                        *(row+rr*n+cc)=1;
+                        int rr = puttingrow + block.getshape(k).r;
+                        int cc = block.getstart_col() + block.getshape(k).c;
+                        *(row + rr * n + cc) = 1;
                     }
-                    deleterow(puttingrow,block);
+                    deleterow(puttingrow, block);
                     return gameover;
                 }
-                else if(exceed==1&&b==1){
+                else if(exceed == 1 && b == 1){
                     int exceedpart[4];
-                    int pos=0;
+                    int pos = 0;
                     int numofdelete;
-                    int pointexceed=4;
-                    for(int k=0;k<4;k++)exceedpart[k]=-1;
-                    for(int k=0;k<4;k++){
-                        int rr=puttingrow+block.getshape(k).r;
-                        int cc=block.getstart_col()+block.getshape(k).c;
-                        if(rr<m)
-                            *(row+rr*n+cc)=1;
-                        if(rr>=m)
-                            exceedpart[pos++]=rr*n+cc;
+                    int pointexceed = 4;
+                    for(int k = 0; k < 4; k++)exceedpart[k] = -1;
+                    for(int k = 0;k < 4; k++){
+                        int rr = puttingrow + block.getshape(k).r;
+                        int cc = block.getstart_col() + block.getshape(k).c;
+                        if(rr < m)
+                            *(row + rr * n + cc) = 1;
+                        if(rr >= m)
+                            exceedpart[pos++]=rr * n + cc;
                     }
-                    if(n==1&&m==1){
-                        int pe=0;
+                    if(n == 1 && m == 1){
+                        int pe = 0;
                         int new_exceedpart[4];
-                        int pos=0;
-                        for(int p=0;p<4;p++){
-                            pe=0;
-                            pos=0;
-                            numofdelete=deleterow(puttingrow,block);
-                            for(int k=0;k<pointexceed;k++){
-                                if(exceedpart[k]!=-1){
-                                    exceedpart[k]=exceedpart[k]-n*numofdelete;
-                                    if(exceedpart[k]<m*n){
-                                        *(row+exceedpart[k])=1;
+                        int pos = 0;
+                        for(int p = 0; p < 4; p++){
+                            pe = 0;
+                            pos = 0;
+                            numofdelete = deleterow(puttingrow, block);
+                            for(int k = 0; k < pointexceed; k++){
+                                if(exceedpart[k] != -1){
+                                    exceedpart[k] = exceedpart[k] - n * numofdelete;
+                                    if(exceedpart[k] < m * n){
+                                        *(row+exceedpart[k]) = 1;
                                     }
-                                    else if(exceedpart[k]>=n*m){
-                                        new_exceedpart[pos++]=exceedpart[k];
+                                    else if(exceedpart[k] >= n * m){
+                                        new_exceedpart[pos++] = exceedpart[k];
                                         pe++;
                                     }
                                 }
                             }
-                            pointexceed=pe;
-                            for(int k=0;k<4;k++){
-                                if(k<pointexceed)
-                                    exceedpart[k]=new_exceedpart[k];
-                                else if(k>=pointexceed)
-                                    exceedpart[k]=-1;
+                            pointexceed = pe;
+                            for(int k = 0; k < 4; k++){
+                                if(k < pointexceed)
+                                    exceedpart[k] = new_exceedpart[k];
+                                else if(k >= pointexceed)
+                                    exceedpart[k] = -1;
                             }
-                            if(p==3&&pointexceed!=0){
+                            if(p == 3 && pointexceed != 0){
                                 //cout << "gameover" <<endl;
-                                gameover=1;
+                                gameover = 1;
                                 return gameover;
                             }       
-                            else if(p==3&&pointexceed==0){
+                            else if(p == 3 && pointexceed == 0){
                                 return gameover;
                             }                  
                         }
                         
                     }
                     else{
-                        int pe=0;
+                        int pe = 0;
                         int new_exceedpart[4];
-                        int pos=0;
-                        for(int p=0;p<2;p++){
-                            pe=0;
-                            pos=0;
-                            numofdelete=deleterow(puttingrow,block);
-                            for(int k=0;k<pointexceed;k++){
-                                if(exceedpart[k]!=-1){
-                                    exceedpart[k]=exceedpart[k]-n*numofdelete;
-                                    if(exceedpart[k]<m*n){
-                                        *(row+exceedpart[k])=1;
+                        int pos = 0;
+                        for(int p = 0; p < 2; p++){
+                            pe = 0;
+                            pos = 0;
+                            numofdelete = deleterow(puttingrow, block);
+                            for(int k = 0; k < pointexceed; k++){
+                                if(exceedpart[k] != -1){
+                                    exceedpart[k] = exceedpart[k] - n * numofdelete;
+                                    if(exceedpart[k] < m * n){
+                                        *(row + exceedpart[k]) = 1;
                                     }
-                                    else if(exceedpart[k]>=n*m){
-                                        new_exceedpart[pos++]=exceedpart[k];
+                                    else if(exceedpart[k] >= n * m){
+                                        new_exceedpart[pos++] = exceedpart[k];
                                         pe++;
                                     }
                                 }
                             }
-                            pointexceed=pe;
-                            for(int k=0;k<4;k++){
-                                if(k<pointexceed)
-                                    exceedpart[k]=new_exceedpart[k];
-                                else if(k>=pointexceed)
-                                    exceedpart[k]=-1;
+                            pointexceed = pe;
+                            for(int k = 0; k < 4; k++){
+                                if(k < pointexceed)
+                                    exceedpart[k] = new_exceedpart[k];
+                                else if(k >= pointexceed)
+                                    exceedpart[k] = -1;
                             }
-                            if(p==1&&pointexceed!=0){
+                            if(p == 1 && pointexceed != 0){
                                 //cout << "gameover" <<endl;
-                                gameover=1;
+                                gameover = 1;
                                 return gameover;
                             }       
-                            else if(p==1&&pointexceed==0){
+                            else if(p == 1 && pointexceed == 0){
                                 return gameover;
                             }                  
                         }
@@ -410,43 +410,43 @@ class TETRIS
         }
         int deleterow(int puttingrow, block_data &block)
         {   
-            int pos=0;
-            int numofone=0;
+            int pos = 0;
+            int numofone = 0;
             int row_delete[4];
-            for(int i=0;i<4;i++)row_delete[i]=-1;
+            for(int i = 0; i < 4;i ++)row_delete[i] = -1;
 
-            for(int k=puttingrow;k<puttingrow+block.gettall()&&k<m;k++){
-                numofone=0;
-                for(int p=0;p<n;p++){
-                    if(*(row+k*n+p)==1)numofone++;             
+            for(int k = puttingrow; k < puttingrow + block.gettall() && k < m; k++){
+                numofone = 0;
+                for(int p = 0; p < n; p++){
+                    if(*(row + k * n + p) == 1)numofone++;             
                 }
-                if(numofone==n){
-                    row_delete[pos]=k;
+                if(numofone == n){
+                    row_delete[pos] = k;
                     pos++;
                 }
             }
-            if(row_delete[0]!=-1){
-                int isdeleterow=0;
-                int pos=0;
+            if(row_delete[0] != -1){
+                int isdeleterow = 0;
+                int pos = 0;
                 int *new_matrix;
                 new_matrix = new int [m*n];
-                for(int k=0;k<m;k++){
-                    isdeleterow=0;
-                    for(int l=0;l<4;l++){
-                        if(row_delete[l]!=-1){
-                            if(k==row_delete[l]) isdeleterow=1;
+                for(int k = 0; k < m; k++){
+                    isdeleterow = 0;
+                    for(int l = 0; l < 4; l++){
+                        if(row_delete[l] != -1){
+                            if(k == row_delete[l]) isdeleterow = 1;
                         }
                     }
                     if(!isdeleterow){
-                        for(int l=0;l<n;l++){
-                            *(new_matrix+pos*n+l)=*(row+k*n+l);
+                        for(int l = 0; l < n; l++){
+                            *(new_matrix + pos * n +l) =* (row + k * n + l);
                         }
                         pos++;                            
                     }
                 }
-                for(int l=pos;l<m;l++){
-                    for(int k=0;k<n;k++)
-                        *(new_matrix+l*n+k)=0;
+                for(int l = pos; l < m; l++){
+                    for(int k = 0; k < n; k++)
+                        *(new_matrix + l * n + k) = 0;
                 }
                 delete [] row;
                 row = new_matrix;
@@ -454,7 +454,12 @@ class TETRIS
             return pos;      
         }
                 
+        void shift(n){
+            for (int i = 0; i < 4; i++){
 
+            }
+
+        }
                     
             
         // void setnum_of_data(int a)
@@ -468,13 +473,13 @@ class TETRIS
         void write()
         {
             fstream opfile;
-            opfile.open("Tetris.final",ios::out);
+            opfile.open("Tetris.final", ios::out);
             if(!opfile){
                 cout << "error";
             }
-            for(int i=m-1;i>=0;i--){
-                for(int j=0;j<n;j++){
-                    opfile << *(row+i*n+j);
+            for(int i = m - 1; i >= 0; i--){
+                for(int j = 0; j < n; j++){
+                    opfile << *(row + i * n + j);
                 }
                 opfile << endl;
                 }   
@@ -484,12 +489,12 @@ class TETRIS
         block_data* read()
         {
             ifstream rdfile;
-            rdfile.open("Tetris.data",ios::in);
+            rdfile.open("Tetris.data", ios::in);
             if(!rdfile){
-                cout<<"error";
+                cout << "error";
             }
             rdfile >> m >> n;
-            data=new block_data [1000];
+            data = new block_data [1000];
             while(!rdfile.eof()){
                 string a;
                 int b;
@@ -509,15 +514,15 @@ class TETRIS
 int main()
 {
     block_data *data;
-    int GAMEOVER=0;
+    int GAMEOVER = 0;
     
     TETRIS tetris;
     data=tetris.read();
     //tetris.show_data();
     tetris.settetris();
 
-    for(int i=0;i<tetris.getnum_of_data()&&GAMEOVER==0;i++){
-        GAMEOVER=tetris.putblock(data[i]);
+    for(int i = 0; i < tetris.getnum_of_data() && GAMEOVER == 0; i++){
+        GAMEOVER = tetris.putblock(data[i]);
         //cout << "number" << i+1 << endl;
         //cout<<data[i].getblock()<<" "<<data[i].getstart_col()+1<<endl;
         //tetris.showtetris();
@@ -531,15 +536,3 @@ int main()
 
 }
 
-
-int main()
-
-while (!touches the boundary){
-    cin pattern 
-    for (;the upper row are not all zero; column down)
-    shift left or right
-    if (row has all 1) {
-        clear the row 
-        all others 1 goes down 
-    }
-}
