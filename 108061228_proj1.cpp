@@ -1,12 +1,16 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <assert.h>
+#include <string.h>
 using namespace std;
 
 typedef struct shape
 {
-    int r, w;
+    int r;
+    int c;
 } SHAPE;
+
 class block_data
 {
     private:
@@ -25,211 +29,211 @@ class block_data
         void setblock(string &x, int &y){
             block = x;
             start_col = y - 1;
-            for (int i = 0; i < 4; i++)
-                det[i] = {-1, -1}
+            for (int i = 0; i < 4; i++){
+                det[i].r = -1;
+                det[i].c = -1;
+            }
             if (block[0] == 'T'){
                 if(block[1] == '1'){
-                    shape[0] = {0,1};
-                    shape[1] = {1,0};
-                    shape[2] = {1,1};
-                    shape[3] = {1,2};   
-                    det[0] = {0,1};
-                    det[1] = {1,0};
-                    det[2] = {1,2};
+                    shape[0].r = 0; shape[0].c = 1;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 1; shape[3].c = 2;   
+                    det[0].r = 0; det[0].c = 1;
+                    det[1].r = 1; det[1].c = 0;
+                    det[2].r = 1; det[2].c = 2;
                     tall = 2;
                 }
                 else if(block[1] == '2'){
-                    shape[0] = {0,1};
-                    shape[1] = {1,0};
-                    shape[2] = {1,1};
-                    shape[3] = {2,1};  
-                    det[0] = {0,1};
-                    det[1] = {1,0};        
+                    shape[0].r = 0; shape[0].c = 1;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 2; shape[3].c = 1; 
+                    det[0].r = 0; det[0].c = 1;
+                    det[1].r = 1; det[1].c = 0;       
                     tall = 3;     
                 }
                 else if(block[1] == '3'){
-                    shape[0] = {0,0};
-                    shape[1] ={ 0,1};
-                    shape[2] = {0,2};
-                    shape[3] = {1,1};
-                    det[0] = {0,0};
-                    det[1] = {0,1};
-                    det[2] = {0,2};      
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 0; shape[1].c = 1;
+                    shape[2].r = 0; shape[2].c = 2;
+                    shape[3].r = 1; shape[3].c = 1;
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 0; det[1].c = 1;
+                    det[2].r = 0; det[2].c = 2;     
                     tall = 2;
                 }
                 else if(block[1] == '4'){
-                    shape[0] = {0,0};
-                    shape[1] = {1,0};
-                    shape[2] = {1,1};
-                    shape[3] = {2,0};
-                    det[0] = {0,0};
-                    det[1] = {1,1};
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 2; shape[3].c = 0;
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 1; det[1].c = 1;
                     tall = 3;
                 }
             }
             else if(block[0] == 'L'){
                 if(block[1] == '1'){
-                    shape[0] = {0,0};
-                    shape[1] = {0,1};
-                    shape[2] = {1,0};
-                    shape[3] = {2,0};   
-                    det[0] = {0,0};
-                    det[1] = {0,1};
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 0; shape[1].c = 1;
+                    shape[2].r = 1; shape[2].c = 0;
+                    shape[3].r = 2; shape[3].c = 0;
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 0; det[1].c = 1;
                     tall = 3;
                 }
                 else if(block[1] == '2'){
-                    shape[0] = {0,0};
-                    shape[1] = {1,0};
-                    shape[2] = {1,1};
-                    shape[3] = {1,2};  
-                    det[0] = {0,0};
-                    det[1] = {1,1};
-                    det[2] = {1,2};       
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 1; shape[3].c = 2; 
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 1; det[1].c = 1;
+                    det[2].r = 1; det[2].c = 2;       
                     tall = 2;  
                 }
                 else if(block[1] == '3'){
-                    shape[0] = {0,1};
-                    shape[1] = {1,1};
-                    shape[2] = {2,0};
-                    shape[3] = {2,1};
-                    det[0] = {0,1};
-                    det[1] = {2,0};   
+                    shape[0].r = 0; shape[0].c = 1;
+                    shape[1].r = 1; shape[1].c = 1;
+                    shape[2].r = 2; shape[2].c = 0;
+                    shape[3].r = 2; shape[3].c = 1;
+                    det[0].r = 0; det[0].c = 1;
+                    det[1].r = 2; det[1].c = 0;   
                     tall = 3;   
                 }
                 else if(block[1] == '4'){
-                    shape[0] = {0,0};
-                    shape[1] = {0,1};
-                    shape[2] = {0,2};
-                    shape[3] = {1,2};
-                    det[0] = {0,0};
-                    det[1] = {0,1};
-                    det[2] = {0,2};
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 0; shape[1].c = 1;
+                    shape[2].r = 0; shape[2].c = 2;
+                    shape[3].r = 1; shape[3].c = 2;
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 0; det[1].c = 1;
+                    det[2].r = 0; det[2].c = 2;
                     tall = 2;
                 }
             }
             else if(block[0] == 'J'){
                 if(block[1] == '1'){
-                    shape[0] = {0,0};
-                    shape[1] = {0,1};
-                    shape[2] = {1,1};
-                    shape[3] = {2,1};   
-                    det[0] = {0,0};
-                    det[1] = {0,1};
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 0; shape[1].c = 1;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 2; shape[3].c = 1;   
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 0; det[1].c = 1;
                     tall = 3;
                 }
                 else if(block[1] == '2'){
-                    shape[0] = {0,0};
-                    shape[1] = {0,1};
-                    shape[2] = {0,2};
-                    shape[3] = {1,0};  
-                    det[0] = {0,0};
-                    det[1] = {0,1};
-                    det[2] = {0,2}; 
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 0; shape[1].c = 1;
+                    shape[2].r = 0; shape[2].c = 2;
+                    shape[3].r = 1; shape[3].c = 0; 
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 0; det[1].c = 1;
+                    det[2].r = 0; det[2].c = 2; 
                     tall = 2;        
                 }
                 else if(block[1] == '3'){
-                    shape[0] = {0,0};
-                    shape[1] = {1,0};
-                    shape[2] = {2,0};
-                    shape[3] = {2,1};
-                    det[0] = {0,0};
-                    det[1] = {2,1};    
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 2; shape[2].c = 0;
+                    shape[3].r = 2; shape[3].c = 1;
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 2; det[1].c = 1;  
                     tall = 3;  
                 }
                 else if(block[1] == '4'){
-                    shape[0] = {0,2};
-                    shape[1] = {1,0};
-                    shape[2] = {1,1};
-                    shape[3] = {1,2};
-                    det[0] = {0,2};
-                    det[1] = {1,0};
-                    det[2] = {1,1};
+                    shape[0].r = 0; shape[0].c = 2;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 1; shape[3].c = 2;
+                    det[0].r = 0; det[0].c = 2;
+                    det[1].r = 1; det[1].c = 0;
+                    det[2].r = 1; det[2].c = 1;
                     tall = 2;
                 }
             }
             else if(block[0] == 'S'){
                 if(block[1] == '1'){
-                    shape[0] = {0,0};
-                    shape[1] = {0,1};
-                    shape[2] = {1,1};
-                    shape[3] = {1,2};   
-                    det[0] = {0,0};
-                    det[1] = {0,1};
-                    det[2] = {1,2};
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 0; shape[1].c = 1;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 1; shape[3].c = 2;  
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 0; det[1].c = 1;
+                    det[2].r = 1; det[2].c = 2;
                     tall = 2;
                 }
                 else if(block[1] == '2'){
-                    shape[0] = {0,1};
-                    shape[1] = {1,0};
-                    shape[2] = {1,1};
-                    shape[3] = {2,0};  
-                    det[0] = {0,1};
-                    det[1] = {1,0};         
+                    shape[0].r = 0; shape[0].c = 1;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 2; shape[3].c = 0;  
+                    det[0].r = 0; det[0].c = 1;
+                    det[1].r = 1; det[1].c = 0;         
                     tall = 3;
                 }
             }
             else if(block[0] == 'Z'){
                 if(block[1] == '1'){
-                    shape[0] = {0,1};
-                    shape[1] = {0,2};
-                    shape[2] = {1,0};
-                    shape[3] = {1,1};   
-                    det[0] = {0,1};
-                    det[1] = {0,2};
-                    det[2] = {1,0};
+                    shape[0].r = 0; shape[0].c = 1;
+                    shape[1].r = 0; shape[1].c = 2;
+                    shape[2].r = 1; shape[2].c = 0;
+                    shape[3].r = 1; shape[3].c = 1;   
+                    det[0].r = 0; det[0].c = 1;
+                    det[1].r = 0; det[1].c = 2;
+                    det[2].r = 1; det[2].c = 0;
                     tall = 2;
                 }
                 else if(block[1] == '2'){
-                    shape[0] = {0,0};
-                    shape[1] = {1,0};
-                    shape[2] = {1,1};
-                    shape[3] = {2,1};  
-                    det[0] = {0,0};
-                    det[1] = {1,1};         
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 1; shape[2].c = 1;
+                    shape[3].r = 2; shape[3].c = 1; 
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 1; det[1].c = 1;         
                     tall = 3;
                 }
             }
             else if(block[0] == 'I'){
                 if(block[1] == '1'){
-                    shape[0] = {0,0};
-                    shape[1] = {1,0};
-                    shape[2] = {2,0};
-                    shape[3] = {3,0};   
-                    det[0] = {0,0};
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 1; shape[1].c = 0;
+                    shape[2].r = 2; shape[2].c = 0;
+                    shape[3].r = 3; shape[3].c = 0;  
+                    det[0].r = 0; det[0].c = 0;
                     tall = 4;
                 }
                 else if(block[1] == '2'){
-                    shape[0] = {0,0};
-                    shape[1] = {0,1};
-                    shape[2] = {0,2};
-                    shape[3] = {0,3};  
-                    det[0] = {0,0};
-                    det[1] = {0,1};
-                    det[2] = {0,2};
-                    det[3] = {0,3};    
+                    shape[0].r = 0; shape[0].c = 0;
+                    shape[1].r = 0; shape[1].c = 1;
+                    shape[2].r = 0; shape[2].c = 2;
+                    shape[3].r = 0; shape[3].c = 3; 
+                    det[0].r = 0; det[0].c = 0;
+                    det[1].r = 0; det[1].c = 1;
+                    det[2].r = 0; det[2].c = 2;
+                    det[3].r = 0; det[3].c = 3;    
                     tall = 1; 
                 }
             }
             else if(block[0] == 'O'){
-                shape[0] = {0,0};
-                shape[1] = {0,1};
-                shape[2] = {1,0};
-                shape[3] = {1,1};  
-                det[0] = {0,0};
-                det[1] = {0,1}; 
+                shape[0].r = 0; shape[0].c = 0;
+                shape[1].r = 0; shape[1].c = 1;
+                shape[2].r = 1; shape[2].c = 0;
+                shape[3].r = 1; shape[3].c = 1;
+                det[0].r = 0; det[0].c = 0;
+                det[1].r = 0; det[1].c = 1; 
                 tall = 2; 
             }
-
         }
-            }
-        }
-        SHAPE get_det(int i){
+        
+        SHAPE getdet(int i){
             return det[i];
         }
-        SHAPE get_shape(int i){
-            return shpae[i];
+        SHAPE getshape(int i){
+            return shape[i];
         }
-        int get_tall(){
+        int gettall(){
             return tall;
         }
 };
@@ -277,7 +281,7 @@ class TETRIS
                 cout << endl;
                 }      
         }
-        bool putblock(block_data &block, n)
+        bool putblock(block_data &block, int c)
         {
             int touch = 0;
             int b = 0;
@@ -311,33 +315,35 @@ class TETRIS
                     for(int k = 0; k < 4; k++){
                         int rr = puttingrow + block.getshape(k).r;
                         int cc = block.getstart_col() + block.getshape(k).c + n;
-                        /* if(*(row + rr * n + cc) == 1) return 1; 
-                        else 
-                            for(int i = rr - 1; i >= 0 && touch != 1; i--){
+                        if(*(row + rr * n + cc) == 1) return 1; 
+                        else {
+                            for(int x = rr - 1; x >= 0 && touch != 1; x--){
                                 touch = 0; b = 0;
-                                for(int j = 0; j < 4; j++){
-                                    if(block.getdet(j).r != -1){   
-                                        int rrr = i + block.getdet(j).r;
-                                        int ccc = block.getstart_col() + block.getdet(j).c + n;
-                                        if(r < m){
-                                        if(*(row + rrr * n + ccc) == 1)
+                                for(int y = 0; y < 4; y++){
+                                    if(block.getdet(y).r != -1){   
+                                        int rrr = x + block.getdet(y).r;
+                                        int ccc = block.getstart_col() + block.getdet(y).c + n;
+                                        if(rrr < m){
+                                            if(*(row + rrr * n + ccc) == 1)
                                             touch = 1;
                                         }
                                     }
                                 }
                                 if(touch == 1){
-                                    puttingrow = i + 1;
+                                    puttingrow = x + 1;
                                     b = 1; 
                                 } 
-                                else if(i == 0 && touch == 0){
+                                else if(x == 0 && touch == 0){
                                     puttingrow = 0;
                                     b = 1;
                                 }
-                                for(int k = 0; k < 4; k++){
-                                    int rrrr = puttingrow + block.getshape(k).r;
-                                    int cccc = block.getstart_col() + block.getshape(k).c + n;
+                                for(int z = 0; z < 4; z++){
+                                    int rrrr = puttingrow + block.getshape(z).r;
+                                    int cccc = block.getstart_col() + block.getshape(z).c + n;
                                     *(row + rrrr * n + cccc) = 1;
-                      */
+                                }
+                            }
+                        }
                     }
                     deleterow(puttingrow, block);
                     return gameover;
@@ -434,6 +440,8 @@ class TETRIS
                 }
             }   
         }
+            
+        
         int deleterow(int puttingrow, block_data &block)
         {   
             int pos = 0;
@@ -479,14 +487,8 @@ class TETRIS
             } 
             return pos;      
         }
-                
-        void shift(block_data &block, n){
-            for (int i = 0; i < 4; i++){
-
-                *(row )
-            }
-
-        }
+    
+                  
                     
             
         // void setnum_of_data(int a)
@@ -525,7 +527,8 @@ class TETRIS
             while(!rdfile.eof()){
                 string a;
                 int b;
-                rdfile >> a >> b;
+                int c;
+                rdfile >> a >> b >> c;
                 if(a!="End"){
                 data[num_of_data].setblock(a,b);
                 num_of_data++;
@@ -534,14 +537,13 @@ class TETRIS
             rdfile.close();
             return data;
         }
-
 };
 
 
-int main()
-{
+int main(){
     block_data *data;
     int GAMEOVER = 0;
+    int c;
     
     TETRIS tetris;
     data=tetris.read();
@@ -549,7 +551,7 @@ int main()
     tetris.settetris();
 
     for(int i = 0; i < tetris.getnum_of_data() && GAMEOVER == 0; i++){
-        GAMEOVER = tetris.putblock(data[i]);
+        GAMEOVER = tetris.putblock(data[i], c);
         //cout << "number" << i+1 << endl;
         //cout<<data[i].getblock()<<" "<<data[i].getstart_col()+1<<endl;
         //tetris.showtetris();
@@ -559,6 +561,6 @@ int main()
     
     
     delete []data;
-
+    return 0;
 
 }
