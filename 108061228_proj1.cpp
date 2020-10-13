@@ -11,7 +11,7 @@ class block_data
 {
     private:
         SHAPE shape[4];
-        SHAPE touch_point[4];
+        SHAPE det[4];
         string block;
         int start_col;
         int tall;
@@ -26,16 +26,16 @@ class block_data
             block = x;
             start_col = y - 1;
             for (int i = 0; i < 4; i++)
-                touch_point[i] = {-1, -1}
+                det[i] = {-1, -1}
             if (block[0] == 'T'){
                 if(block[1] == '1'){
                     shape[0] = {0,1};
                     shape[1] = {1,0};
                     shape[2] = {1,1};
                     shape[3] = {1,2};   
-                    touch_point[0] = {0,1};
-                    touch_point[1] = {1,0};
-                    touch_point[2] = {1,2};
+                    det[0] = {0,1};
+                    det[1] = {1,0};
+                    det[2] = {1,2};
                     tall = 2;
                 }
                 else if(block[1] == '2'){
@@ -43,8 +43,8 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {1,1};
                     shape[3] = {2,1};  
-                    touch_point[0] = {0,1};
-                    touch_point[1] = {1,0};        
+                    det[0] = {0,1};
+                    det[1] = {1,0};        
                     tall = 3;     
                 }
                 else if(block[1] == '3'){
@@ -52,9 +52,9 @@ class block_data
                     shape[1] ={ 0,1};
                     shape[2] = {0,2};
                     shape[3] = {1,1};
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {0,1};
-                    touch_point[2] = {0,2};      
+                    det[0] = {0,0};
+                    det[1] = {0,1};
+                    det[2] = {0,2};      
                     tall = 2;
                 }
                 else if(block[1] == '4'){
@@ -62,8 +62,8 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {1,1};
                     shape[3] = {2,0};
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {1,1};
+                    det[0] = {0,0};
+                    det[1] = {1,1};
                     tall = 3;
                 }
             }
@@ -73,8 +73,8 @@ class block_data
                     shape[1] = {0,1};
                     shape[2] = {1,0};
                     shape[3] = {2,0};   
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {0,1};
+                    det[0] = {0,0};
+                    det[1] = {0,1};
                     tall = 3;
                 }
                 else if(block[1] == '2'){
@@ -82,9 +82,9 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {1,1};
                     shape[3] = {1,2};  
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {1,1};
-                    touch_point[2] = {1,2};       
+                    det[0] = {0,0};
+                    det[1] = {1,1};
+                    det[2] = {1,2};       
                     tall = 2;  
                 }
                 else if(block[1] == '3'){
@@ -92,8 +92,8 @@ class block_data
                     shape[1] = {1,1};
                     shape[2] = {2,0};
                     shape[3] = {2,1};
-                    touch_point[0] = {0,1};
-                    touch_point[1] = {2,0};   
+                    det[0] = {0,1};
+                    det[1] = {2,0};   
                     tall = 3;   
                 }
                 else if(block[1] == '4'){
@@ -101,9 +101,9 @@ class block_data
                     shape[1] = {0,1};
                     shape[2] = {0,2};
                     shape[3] = {1,2};
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {0,1};
-                    touch_point[2] = {0,2};
+                    det[0] = {0,0};
+                    det[1] = {0,1};
+                    det[2] = {0,2};
                     tall = 2;
                 }
             }
@@ -113,8 +113,8 @@ class block_data
                     shape[1] = {0,1};
                     shape[2] = {1,1};
                     shape[3] = {2,1};   
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {0,1};
+                    det[0] = {0,0};
+                    det[1] = {0,1};
                     tall = 3;
                 }
                 else if(block[1] == '2'){
@@ -122,9 +122,9 @@ class block_data
                     shape[1] = {0,1};
                     shape[2] = {0,2};
                     shape[3] = {1,0};  
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {0,1};
-                    touch_point[2] = {0,2}; 
+                    det[0] = {0,0};
+                    det[1] = {0,1};
+                    det[2] = {0,2}; 
                     tall = 2;        
                 }
                 else if(block[1] == '3'){
@@ -132,8 +132,8 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {2,0};
                     shape[3] = {2,1};
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {2,1};    
+                    det[0] = {0,0};
+                    det[1] = {2,1};    
                     tall = 3;  
                 }
                 else if(block[1] == '4'){
@@ -141,9 +141,9 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {1,1};
                     shape[3] = {1,2};
-                    touch_point[0] = {0,2};
-                    touch_point[1] = {1,0};
-                    touch_point[2] = {1,1};
+                    det[0] = {0,2};
+                    det[1] = {1,0};
+                    det[2] = {1,1};
                     tall = 2;
                 }
             }
@@ -153,9 +153,9 @@ class block_data
                     shape[1] = {0,1};
                     shape[2] = {1,1};
                     shape[3] = {1,2};   
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {0,1};
-                    touch_point[2] = {1,2};
+                    det[0] = {0,0};
+                    det[1] = {0,1};
+                    det[2] = {1,2};
                     tall = 2;
                 }
                 else if(block[1] == '2'){
@@ -163,8 +163,8 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {1,1};
                     shape[3] = {2,0};  
-                    touch_point[0] = {0,1};
-                    touch_point[1] = {1,0};         
+                    det[0] = {0,1};
+                    det[1] = {1,0};         
                     tall = 3;
                 }
             }
@@ -174,9 +174,9 @@ class block_data
                     shape[1] = {0,2};
                     shape[2] = {1,0};
                     shape[3] = {1,1};   
-                    touch_point[0] = {0,1};
-                    touch_point[1] = {0,2};
-                    touch_point[2] = {1,0};
+                    det[0] = {0,1};
+                    det[1] = {0,2};
+                    det[2] = {1,0};
                     tall = 2;
                 }
                 else if(block[1] == '2'){
@@ -184,8 +184,8 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {1,1};
                     shape[3] = {2,1};  
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {1,1};         
+                    det[0] = {0,0};
+                    det[1] = {1,1};         
                     tall = 3;
                 }
             }
@@ -195,7 +195,7 @@ class block_data
                     shape[1] = {1,0};
                     shape[2] = {2,0};
                     shape[3] = {3,0};   
-                    touch_point[0] = {0,0};
+                    det[0] = {0,0};
                     tall = 4;
                 }
                 else if(block[1] == '2'){
@@ -203,10 +203,10 @@ class block_data
                     shape[1] = {0,1};
                     shape[2] = {0,2};
                     shape[3] = {0,3};  
-                    touch_point[0] = {0,0};
-                    touch_point[1] = {0,1};
-                    touch_point[2] = {0,2};
-                    touch_point[3] = {0,3};    
+                    det[0] = {0,0};
+                    det[1] = {0,1};
+                    det[2] = {0,2};
+                    det[3] = {0,3};    
                     tall = 1; 
                 }
             }
@@ -215,16 +215,16 @@ class block_data
                 shape[1] = {0,1};
                 shape[2] = {1,0};
                 shape[3] = {1,1};  
-                touch_point[0] = {0,0};
-                touch_point[1] = {0,1}; 
+                det[0] = {0,0};
+                det[1] = {0,1}; 
                 tall = 2; 
             }
 
         }
             }
         }
-        SHAPE get_touch_point(int i){
-            return touch_point[i];
+        SHAPE get_det(int i){
+            return det[i];
         }
         SHAPE get_shape(int i){
             return shpae[i];
@@ -277,7 +277,7 @@ class TETRIS
                 cout << endl;
                 }      
         }
-        bool putblock( block_data &block)
+        bool putblock(block_data &block, n)
         {
             int touch = 0;
             int b = 0;
@@ -305,13 +305,39 @@ class TETRIS
                     puttingrow = 0;
                     b = 1;
                 } 
-                if(puttingrow + block.gettall() >m && b == 1)exceed = 1;
+                if(puttingrow + block.gettall() > m && b == 1)exceed = 1;
 
                 if(exceed == 0 && b == 1){                           
                     for(int k = 0; k < 4; k++){
                         int rr = puttingrow + block.getshape(k).r;
-                        int cc = block.getstart_col() + block.getshape(k).c;
-                        *(row + rr * n + cc) = 1;
+                        int cc = block.getstart_col() + block.getshape(k).c + n;
+                        /* if(*(row + rr * n + cc) == 1) return 1; 
+                        else 
+                            for(int i = rr - 1; i >= 0 && touch != 1; i--){
+                                touch = 0; b = 0;
+                                for(int j = 0; j < 4; j++){
+                                    if(block.getdet(j).r != -1){   
+                                        int rrr = i + block.getdet(j).r;
+                                        int ccc = block.getstart_col() + block.getdet(j).c + n;
+                                        if(r < m){
+                                        if(*(row + rrr * n + ccc) == 1)
+                                            touch = 1;
+                                        }
+                                    }
+                                }
+                                if(touch == 1){
+                                    puttingrow = i + 1;
+                                    b = 1; 
+                                } 
+                                else if(i == 0 && touch == 0){
+                                    puttingrow = 0;
+                                    b = 1;
+                                }
+                                for(int k = 0; k < 4; k++){
+                                    int rrrr = puttingrow + block.getshape(k).r;
+                                    int cccc = block.getstart_col() + block.getshape(k).c + n;
+                                    *(row + rrrr * n + cccc) = 1;
+                      */
                     }
                     deleterow(puttingrow, block);
                     return gameover;
@@ -328,7 +354,7 @@ class TETRIS
                         if(rr < m)
                             *(row + rr * n + cc) = 1;
                         if(rr >= m)
-                            exceedpart[pos++]=rr * n + cc;
+                            exceedpart[pos++] = rr * n + cc;
                     }
                     if(n == 1 && m == 1){
                         int pe = 0;
@@ -342,7 +368,7 @@ class TETRIS
                                 if(exceedpart[k] != -1){
                                     exceedpart[k] = exceedpart[k] - n * numofdelete;
                                     if(exceedpart[k] < m * n){
-                                        *(row+exceedpart[k]) = 1;
+                                        *(row + exceedpart[k]) = 1;
                                     }
                                     else if(exceedpart[k] >= n * m){
                                         new_exceedpart[pos++] = exceedpart[k];
@@ -429,7 +455,7 @@ class TETRIS
                 int isdeleterow = 0;
                 int pos = 0;
                 int *new_matrix;
-                new_matrix = new int [m*n];
+                new_matrix = new int [m * n];
                 for(int k = 0; k < m; k++){
                     isdeleterow = 0;
                     for(int l = 0; l < 4; l++){
@@ -454,9 +480,10 @@ class TETRIS
             return pos;      
         }
                 
-        void shift(n){
+        void shift(block_data &block, n){
             for (int i = 0; i < 4; i++){
 
+                *(row )
             }
 
         }
@@ -535,4 +562,3 @@ int main()
 
 
 }
-
