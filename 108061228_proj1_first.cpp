@@ -4,6 +4,7 @@
 
 using namespace std;
 
+string file;
 int s[1000];
 typedef struct shape
 {
@@ -320,7 +321,7 @@ class TETRIS
                     for(int k = 0; k < 4; k++){
                         int rr = puttingrow + block.getshape(k).r;
                         int cc = block.getstart_col() + block.getshape(k).c + g;
-                        if(*(row + rr * n + cc) == 1 || cc < 0 || cc > 10) {
+                        if(*(row + rr * n + cc) == 1 || cc < 0 || cc > n) {
                             gameover = 1;
                             return gameover; 
                         }
@@ -625,9 +626,9 @@ class TETRIS
             
         }
         block_data* read()
-        {
+        {   
             ifstream rdfile;
-            rdfile.open("argv[1]", ios::in);
+            rdfile.open(file, ios::in);
             if(!rdfile){
                 cout << "error";
             }
@@ -655,7 +656,8 @@ class TETRIS
 int main(int argc, char *argv[]){
     block_data *data;
     int GAMEOVER = 0;
-    
+    file = argv[1];
+
     TETRIS tetris;
     data = tetris.read();
     //tetris.show_data();
