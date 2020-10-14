@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <assert.h>
+
 using namespace std;
 
 int s[1000];
@@ -320,7 +320,7 @@ class TETRIS
                     for(int k = 0; k < 4; k++){
                         int rr = puttingrow + block.getshape(k).r;
                         int cc = block.getstart_col() + block.getshape(k).c + g;
-                        if(*(row + rr * n + cc) == 1) {
+                        if(*(row + rr * n + cc) == 1 || cc < 0 || cc > 10) {
                             gameover = 1;
                             return gameover; 
                         }
@@ -424,7 +424,7 @@ class TETRIS
             gameover = 0;
             exceed = 0;
 
-            for(int i = w - 1; i >= 0 && touch != 1; i--){
+            for(int i = w; i >= 0 && touch != 1; i--){
                 touch = 0; b = 0;
                 for(int j = 0; j < 4; j++){
                     if(block.getdet(j).r != -1){   
@@ -627,7 +627,7 @@ class TETRIS
         block_data* read()
         {
             ifstream rdfile;
-            rdfile.open("Tetris.data", ios::in);
+            rdfile.open("3_revised.data", ios::in);
             if(!rdfile){
                 cout << "error";
             }
@@ -637,15 +637,13 @@ class TETRIS
                 string a;
                 int b;
                 int c;
-                int i = 0;
                 
 
                 rdfile >> a >> b >> c;
                 if(a!="End"){
                 data[num_of_data].setblock(a,b);
+                s[num_of_data] = c;
                 num_of_data++;
-                s[i] = c;
-                i++;
                 }
             }
             rdfile.close();
